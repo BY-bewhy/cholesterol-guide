@@ -1,0 +1,16 @@
+# 저작권 자료 — 공개 배포 금지 (학회 진료지침·팩트시트 PDF 등)
+Reference/
+
+# 백업/작업 파일
+dyslipidemia-guide_v1_article.html
+meogeodo-dwae.jsx
+
+# 로컬 개발용 서버 스크립트
+_serve.py
+
+# 에디터/도구 설정
+.claude/
+
+# OS
+Thumbs.db
+.DS_Store

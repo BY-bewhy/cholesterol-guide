@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script>document.documentElement.className+=' js';</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="건강검진에서 콜레스테롤·LDL이 높게 나왔다면? 내 수치의 의미부터 생활습관 관리까지, 한국지질·동맥경화학회 진료지침에 근거해 쉽게 알려드립니다.">
+<meta property="og:title" content="건강검진에서 콜레스테롤이 높게 나왔다면">
+<meta property="og:description" content="내 수치가 어떤 의미인지, 무엇부터 하면 되는지 차근차근 알려드려요. — 두잉두잇">
+<meta property="og:type" content="website">
+<title>건강검진에서 콜레스테롤이 높게 나왔다면 — 두잉두잇</title>
+<style>
+  :root{
+    --beige:#faf3e8; --beige2:#f3e8d6; --cream:#fffdf9; --brown:#3d2b1f; --brown2:#6b543d;
+    --muted:#a08465; --orange:#f2811d; --orange-soft:#fdebd7;
+    --green:#4a8c4f; --green-soft:#e9f2e4;
+    --yellow:#c98a1e; --yellow-soft:#fbf0d8;
+    --red:#d14b32; --red-soft:#fbe7df;
+    --line:#ece0cd;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--beige); color:var(--brown);
+    font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 22px}
+  .narrow{max-width:680px; margin:0 auto; padding:0 22px}
+
+  /* ── topbar ── */
+  .topbar{
+    position:sticky; top:0; z-index:50; background:rgba(250,243,232,.82);
+    backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid rgba(236,224,205,.7);
+  }
+  .topbar .inner{max-width:760px; margin:0 auto; padding:13px 22px; display:flex; align-items:center; justify-content:space-between}
+  .logo{font-size:15px; font-weight:800; color:var(--brown); letter-spacing:-.01em}
+  .logo span{color:var(--orange)}
+  .topbar a.tb-cta{font-size:13px; font-weight:700; color:var(--brown2); text-decoration:none; background:var(--cream); border:1px solid var(--line); padding:7px 13px; border-radius:20px}
+  .topbar a.tb-cta:hover{border-color:var(--orange); color:var(--orange)}
+
+  /* ── reveal (JS가 있을 때만 숨겼다가 등장; JS가 없으면 처음부터 보임) ── */
+  .js .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{opacity:1; transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .js .reveal{opacity:1; transform:none; transition:none}
+  }
+
+  /* ── hero ── */
+  .hero{padding:64px 0 56px; text-align:center}
+  .kicker{display:inline-block; font-size:13px; font-weight:700; color:var(--orange); background:var(--orange-soft); padding:6px 14px; border-radius:20px; letter-spacing:.01em}
+  .hero h1{font-size:clamp(30px,7vw,46px); font-weight:800; letter-spacing:-.025em; line-height:1.25; margin:22px 0 16px}
+  .hero p.sub{font-size:clamp(15px,2.6vw,17px); color:var(--brown2); max-width:480px; margin:0 auto 30px}
+  .btn{display:inline-flex; align-items:center; gap:8px; font-size:16px; font-weight:700; text-decoration:none; padding:15px 26px; border-radius:14px; cursor:pointer; border:none; font-family:inherit; transition:.15s}
+  .btn-primary{background:var(--brown); color:var(--cream)}
+  .btn-primary:hover{background:#2c1f15; transform:translateY(-1px)}
+  .btn-ghost{background:var(--cream); color:var(--brown); border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--orange); color:var(--orange)}
+  .hero .btnrow{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+
+  /* ── hero 결과지 비주얼 ── */
+  .sheet{
+    margin:46px auto 0; max-width:340px; background:var(--cream); border:1px solid var(--line);
+    border-radius:20px; padding:22px 22px; box-shadow:0 20px 50px -22px rgba(61,43,31,.35);
+    transform:rotate(-2deg); text-align:left;
+  }
+  .sheet .sh{font-size:12px; font-weight:800; color:var(--muted); letter-spacing:.06em; margin-bottom:14px; display:flex; justify-content:space-between}
+  .sheet .row{display:flex; justify-content:space-between; align-items:center; font-size:14px; padding:9px 0; border-bottom:1px dashed var(--line)}
+  .sheet .row:last-child{border-bottom:none}
+  .sheet .row .nm{color:var(--brown2); font-weight:600}
+  .sheet .row .vl{font-weight:800; font-variant-numeric:tabular-nums}
+  .sheet .row.hot{background:var(--red-soft); margin:4px -12px; padding:9px 12px; border-radius:10px; border:none}
+  .sheet .row.hot .vl{color:var(--red)}
+  .sheet .row.hot .tag{font-size:10px; font-weight:800; color:#fff; background:var(--red); padding:2px 7px; border-radius:6px; margin-left:7px}
+  .sheet .ok{color:var(--green); font-size:11px; font-weight:700}
+
+  /* ── 섹션 공통 ── */
+  section{padding:74px 0}
+  .band{background:var(--cream); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .band-warm{background:linear-gradient(180deg,var(--beige) 0%, var(--beige2) 100%)}
+  .eyebrow{font-size:13px; font-weight:800; color:var(--orange); letter-spacing:.04em; margin-bottom:12px}
+  h2{font-size:clamp(24px,5vw,34px); font-weight:800; letter-spacing:-.02em; line-height:1.32}
+  h2 .hl{background:linear-gradient(180deg,transparent 58%, var(--yellow-soft) 58%); padding:0 3px}
+  .stmt{font-size:clamp(16px,2.8vw,18.5px); color:var(--brown2); margin-top:18px; line-height:1.7}
+  .stmt b{color:var(--brown); font-weight:700}
+
+  .bigstat{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px}
+  .bigstat .s{flex:1; min-width:180px; background:var(--cream); border:1px solid var(--line); border-radius:18px; padding:24px}
+  .bigstat .s .n{font-size:34px; font-weight:800; color:var(--orange); line-height:1.05; letter-spacing:-.02em}
+  .bigstat .s .c{font-size:13.5px; color:var(--brown2); margin-top:8px}
+
+  /* ── 수치 체커 ── */
+  .checker{background:var(--cream); border:1px solid var(--line); border-radius:22px; padding:26px 24px 14px; margin-top:30px; box-shadow:0 16px 44px -28px rgba(61,43,31,.4)}
+  .checker .ctitle{font-size:15px; font-weight:800; margin-bottom:3px}
+  .checker .csub{font-size:12.5px; color:var(--muted); margin-bottom:18px}
+  .field{margin-bottom:15px}
+  .field label{display:block; font-size:13.5px; font-weight:700; margin-bottom:7px}
+  .field .inrow{display:flex; align-items:center; gap:9px}
+  .field input{width:108px; font-size:16px; font-weight:700; color:var(--brown); text-align:center; border:1.5px solid var(--line); border-radius:11px; padding:10px 8px; background:#fff; font-family:inherit}
+  .field input:focus{outline:none; border-color:var(--orange)}
+  .field .unit{font-size:12.5px; color:var(--muted)}
+  .verdict{flex:1; min-width:0; font-size:13.5px; font-weight:700; padding:9px 13px; border-radius:11px; background:var(--beige); color:var(--muted); transition:.15s}
+  .verdict.v-green{background:var(--green-soft); color:var(--green)}
+  .verdict.v-yellow{background:var(--yellow-soft); color:var(--yellow)}
+  .verdict.v-red{background:var(--red-soft); color:var(--red)}
+  .checker .foot{font-size:11.5px; color:var(--muted); border-top:1px dashed var(--line); padding:13px 0 14px; margin-top:6px}
+
+  .scale{margin:14px 0}
+  .scale .label{font-size:13px; font-weight:800; margin-bottom:7px}
+  .bars{display:flex; gap:4px; border-radius:11px; overflow:hidden}
+  .bars div{flex:1; padding:9px 4px; text-align:center; font-size:11px; font-weight:700; color:#fff; line-height:1.3}
+  .b-g{background:var(--green)} .b-y{background:var(--yellow)} .b-r{background:var(--red)} .b-r2{background:#a8341f}
+  .bars .rng{display:block; font-size:10px; font-weight:600; opacity:.92; margin-top:1px}
+  details.scales{margin-top:22px; border:1px solid var(--line); border-radius:14px; background:var(--cream); padding:0 18px}
+  details.scales summary{cursor:pointer; font-size:14px; font-weight:700; padding:15px 0; list-style:none; display:flex; justify-content:space-between; align-items:center}
+  details.scales summary::-webkit-details-marker{display:none}
+  details.scales summary::after{content:"＋"; color:var(--orange); font-weight:800}
+  details.scales[open] summary::after{content:"－"}
+  details.scales .inner{padding-bottom:14px}
+
+  /* ── 위험요인 ── */
+  .risk{background:var(--cream); border:1px solid var(--line); border-radius:22px; padding:22px 24px; margin-top:30px}
+  .risk .rt{font-size:14.5px; font-weight:800; margin-bottom:8px}
+  .risk label{display:flex; gap:11px; align-items:flex-start; font-size:14px; color:var(--brown2); padding:11px 0; border-bottom:1px solid var(--line); cursor:pointer}
+  .risk label:last-of-type{border-bottom:none}
+  .risk input{width:19px; height:19px; margin-top:1px; accent-color:var(--orange); flex:none}
+  .risk .rcount{margin-top:15px; font-size:14px; font-weight:800; padding:14px 16px; border-radius:13px; background:var(--orange-soft); color:#8a5e12; line-height:1.5}
+  .tbl{width:100%; border-collapse:collapse; margin-top:22px; font-size:13.5px; background:var(--cream); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+  .tbl th,.tbl td{padding:13px 15px; text-align:left; border-bottom:1px solid var(--line)}
+  .tbl th{background:var(--beige2); font-weight:800; font-size:12.5px}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .goal{font-weight:800; color:var(--orange); white-space:nowrap}
+  .micro{font-size:12.5px; color:var(--muted); margin-top:12px}
+
+  /* ── 스텝 카드 (생활습관) ── */
+  .steps{margin-top:32px; display:flex; flex-direction:column; gap:16px}
+  .step{background:var(--cream); border:1px solid var(--line); border-radius:20px; padding:24px 24px; display:flex; gap:18px}
+  .step .idx{flex:none; width:42px; height:42px; border-radius:14px; background:var(--orange-soft); color:var(--orange); font-size:20px; font-weight:800; display:flex; align-items:center; justify-content:center}
+  .step .stt{font-size:17px; font-weight:800; margin-bottom:6px}
+  .step .stx{font-size:14px; color:var(--brown2); line-height:1.65}
+  .step .stx b{color:var(--brown)}
+  .step ul{list-style:none; margin-top:8px; font-size:13.8px; color:var(--brown2)}
+  .step li{padding:3px 0 3px 15px; position:relative}
+  .step li::before{content:"·"; position:absolute; left:3px; color:var(--orange); font-weight:800}
+
+  .foodlink{display:flex; align-items:center; gap:14px; text-decoration:none; margin-top:12px;
+    background:var(--green-soft); border:1px solid #cfe3c8; border-radius:14px; padding:15px 18px; transition:.15s}
+  .foodlink:hover{transform:translateY(-1px); box-shadow:0 10px 26px -16px rgba(74,140,79,.6)}
+  .foodlink .fi{font-size:26px}
+  .foodlink .fb{flex:1; min-width:0}
+  .foodlink .ft{font-size:14.5px; font-weight:800; color:#2f5e33}
+  .foodlink .fd{font-size:12.8px; color:#477a4b; line-height:1.45; margin-top:2px}
+  .foodlink .fa{font-size:19px; color:var(--green); font-weight:800}
+
+  /* ── 단순 카드 리스트 (약/놓치기쉬운) ── */
+  .cardbox{background:var(--cream); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:16px; padding:20px 22px; margin-top:16px}
+  .cardbox .ct{font-size:15.5px; font-weight:800; margin-bottom:7px}
+  .cardbox p{font-size:14px; color:var(--brown2); line-height:1.65}
+  .cardbox p b{color:var(--brown)}
+
+  /* ── 요약 ── */
+  .summary{background:var(--brown); color:var(--cream); border-radius:24px; padding:34px 30px; margin-top:6px}
+  .summary .st{font-size:18px; font-weight:800; margin-bottom:16px; color:#fff}
+  .summary ol{list-style:none; counter-reset:s}
+  .summary li{counter-increment:s; position:relative; padding:11px 0 11px 38px; font-size:15px; border-bottom:1px solid rgba(255,255,255,.13); line-height:1.55}
+  .summary li:last-child{border-bottom:none}
+  .summary li b{color:#ffd9b0}
+  .summary li::before{content:counter(s); position:absolute; left:0; top:10px; width:25px; height:25px; background:var(--orange); color:#fff; border-radius:50%; font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center}
+
+  .finalcta{text-align:center; padding:64px 0 30px}
+  .finalcta h2{margin-bottom:24px}
+
+  /* ── footer ── */
+  footer{background:var(--cream); border-top:1px solid var(--line); padding:40px 0 60px}
+  .src .h{font-weight:800; margin-bottom:9px; color:var(--brown); font-size:13.5px}
+  .src ul{list-style:none; font-size:12.5px; color:var(--brown2)}
+  .src li{padding:4px 0 4px 14px; position:relative; line-height:1.55}
+  .src li::before{content:"–"; position:absolute; left:0; color:var(--muted)}
+  .disclaimer{margin-top:20px; font-size:11.5px; color:var(--muted); line-height:1.7}
+
+  @media (max-width:520px){
+    section{padding:58px 0}
+    .step{flex-direction:row}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ───────── TOPBAR ───────── -->
+  <div class="topbar">
+    <div class="inner">
+      <div class="logo">두잉두잇<span>.</span></div>
+      <a class="tb-cta" href="cholesterol-food-guide.html">🚦 음식 가이드</a>
+    </div>
+  </div>
+
+  <!-- ───────── HERO ───────── -->
+  <header class="hero wrap reveal">
+    <span class="kicker">건강검진 결과 읽기</span>
+    <h1>건강검진에서<br>콜레스테롤이<br>높게 나왔다면</h1>
+    <p class="sub">증상이 없지만 수치가 어떤 의미인지,<br>무엇을 알고 있으면 좋을지를<br>차근차근 알려 드릴게요.</p>
+    <div class="btnrow">
+      <a class="btn btn-primary" href="#checker">내 수치 읽어보기 →</a>
+      <a class="btn btn-ghost" href="#start">무엇부터 할까?</a>
+    </div>
+
+    <div class="sheet">
+      <div class="sh"><span>건강검진 결과 · 지질검사</span><span>mg/dL</span></div>
+      <div class="row"><span class="nm">총콜레스테롤</span><span class="vl">215 <span class="ok">경계</span></span></div>
+      <div class="row hot"><span class="nm">LDL 콜레스테롤</span><span class="vl">168<span class="tag">높음</span></span></div>
+      <div class="row"><span class="nm">중성지방</span><span class="vl">142 <span class="ok">적정</span></span></div>
+      <div class="row"><span class="nm">HDL 콜레스테롤</span><span class="vl">48 <span class="ok">보통</span></span></div>
+    </div>
+  </header>
+
+  <!-- ───────── 1. 왜 ───────── -->
+  <section class="band-warm">
+    <div class="narrow reveal">
+      <div class="eyebrow">왜 신경 써야 할까</div>
+      <h2>증상은 없어요.<br><span class="hl">그래서 더 챙겨야 해요.</span></h2>
+      <p class="stmt">콜레스테롤이 높아도 몸은 아프지 않아요. 남는 콜레스테롤이 <b>혈관 벽에 조용히 쌓이며</b> 10년, 20년에 걸쳐 진행되다가, 어느 날 갑자기 심근경색·뇌졸중으로 나타날 수 있거든요. 검진의 빨간 줄은 <b>미리 받은 알림</b>이에요.</p>
+
+      <div class="bigstat">
+        <div class="s"><div class="n">4명 중 1명</div><div class="c">우리나라 성인의 고콜레스테롤혈증 유병률. 2007년보다 약 2.5배 늘었어요.</div></div>
+        <div class="s"><div class="n">20·30대도</div><div class="c">젊은 층에서도 수치가 높은 사람이 꾸준히 늘고 있어요. 중년만의 문제가 아니에요.</div></div>
+      </div>
+
+      <p class="stmt" style="margin-top:30px"><b>좋은 소식은요</b> — 검진에서 막 발견된 단계라면, 대부분 약 없이 <b>생활습관 교정부터</b> 시작해 볼 수 있는 위치예요. 일찍 안 게 오히려 기회입니다.</p>
+    </div>
+  </section>
+
+  <!-- ───────── 2. 수치 체커 ───────── -->
+  <section id="checker">
+    <div class="narrow reveal">
+      <div class="eyebrow">내 수치 읽기</div>
+      <h2>결과지 숫자를<br>그대로 넣어보세요.</h2>
+      <p class="stmt">어디쯤인지 색으로 알려드릴게요. 수치는 내 건강을 보는 <b>여러 참고 요소 중 하나</b>일 뿐이지만, 일반적으로 LDL·총콜레스테롤·중성지방은 낮을수록, HDL은 높을수록 좋은 편이에요.</p>
+
+      <div class="checker">
+        <div class="ctitle">결과지 숫자 입력</div>
+        <div class="csub">단위는 모두 mg/dL이에요. 모르는 항목은 비워두어도 됩니다.</div>
+
+        <div class="field">
+          <label for="tc">총콜레스테롤</label>
+          <div class="inrow"><input type="number" id="tc" inputmode="numeric" placeholder="예: 215"><span class="unit">mg/dL</span><span class="verdict" id="tc-v">숫자를 넣어보세요</span></div>
+        </div>
+        <div class="field">
+          <label for="ldl">LDL 콜레스테롤</label>
+          <div class="inrow"><input type="number" id="ldl" inputmode="numeric" placeholder="예: 140"><span class="unit">mg/dL</span><span class="verdict" id="ldl-v">숫자를 넣어보세요</span></div>
+        </div>
+        <div class="field">
+          <label for="tg">중성지방 (TG)</label>
+          <div class="inrow"><input type="number" id="tg" inputmode="numeric" placeholder="예: 160"><span class="unit">mg/dL</span><span class="verdict" id="tg-v">숫자를 넣어보세요</span></div>
+        </div>
+        <div class="field" style="margin-bottom:10px">
+          <label for="hdl">HDL 콜레스테롤 <span style="font-weight:400;color:var(--muted)">· 높을수록 좋은 편이에요</span></label>
+          <div class="inrow"><input type="number" id="hdl" inputmode="numeric" placeholder="예: 55"><span class="unit">mg/dL</span><span class="verdict" id="hdl-v">숫자를 넣어보세요</span></div>
+        </div>
+        <div class="foot">※ 이 색 구분은 일반적인 분류 기준이에요. LDL 목표치는 사람마다 다르고, 정확한 판단은 의료진과 함께 하세요.</div>
+      </div>
+
+      <details class="scales">
+        <summary>전체 분류 기준표 펼쳐보기</summary>
+        <div class="inner">
+          <div class="scale"><div class="label">LDL 콜레스테롤</div><div class="bars">
+            <div class="b-g">적정<span class="rng">&lt;100</span></div><div class="b-g" style="opacity:.82">정상<span class="rng">100–129</span></div><div class="b-y">경계<span class="rng">130–159</span></div><div class="b-r">높음<span class="rng">160–189</span></div><div class="b-r2">매우높음<span class="rng">≥190</span></div>
+          </div></div>
+          <div class="scale"><div class="label">총콜레스테롤</div><div class="bars">
+            <div class="b-g">적정<span class="rng">&lt;200</span></div><div class="b-y">경계<span class="rng">200–239</span></div><div class="b-r">높음<span class="rng">≥240</span></div>
+          </div></div>
+          <div class="scale"><div class="label">중성지방</div><div class="bars">
+            <div class="b-g">적정<span class="rng">&lt;150</span></div><div class="b-y">경계<span class="rng">150–199</span></div><div class="b-r">높음<span class="rng">200–499</span></div><div class="b-r2">매우높음<span class="rng">≥500</span></div>
+          </div></div>
+          <div class="scale"><div class="label">HDL 콜레스테롤 <span style="font-weight:400;color:var(--muted);font-size:12px">(높을수록 좋음)</span></div><div class="bars">
+            <div class="b-r">낮음·주의<span class="rng">≤40</span></div><div class="b-y">보통<span class="rng">41–59</span></div><div class="b-g">좋음<span class="rng">≥60</span></div>
+          </div></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ───────── 3. 위험도 ───────── -->
+  <section class="band-warm">
+    <div class="narrow reveal">
+      <div class="eyebrow">얼마나 위험할까</div>
+      <h2>LDL 숫자 하나로<br>정해지지 않아요.</h2>
+      <p class="stmt">같은 LDL 140이라도, 건강한 30대와 흡연·고혈압이 있는 50대는 위험이 전혀 달라요. 그래서 <b>다른 위험요인이 몇 개나 있는지</b>를 함께 봅니다. 한번 세어볼까요?</p>
+
+      <div class="risk">
+        <div class="rt">나에게 해당하는 것을 체크해보세요</div>
+        <label><input type="checkbox" class="rf"> 나이 — 남성 만 45세 이상 또는 여성 만 55세 이상</label>
+        <label><input type="checkbox" class="rf"> 담배를 피운다</label>
+        <label><input type="checkbox" class="rf"> 고혈압이 있다 (또는 혈압약 복용 중)</label>
+        <label><input type="checkbox" class="rf"> 가족력 — 부모·형제자매가 이른 나이(남 55·여 65세 미만)에 심장병을 겪음</label>
+        <label><input type="checkbox" class="rf"> HDL(좋은 콜레스테롤)이 40 미만으로 낮다</label>
+        <label><input type="checkbox" id="hdlhigh"> 참고 — HDL이 60 이상으로 높다 (오히려 위험을 하나 빼줘요)</label>
+        <div class="rcount" id="rcount">해당하는 항목을 체크하면 개수를 세어드려요</div>
+      </div>
+
+      <table class="tbl">
+        <tr><th>나의 상태</th><th>LDL 목표</th></tr>
+        <tr><td>위험요인 0~1개 <span style="color:var(--muted)">· 저위험</span></td><td class="goal">&lt; 160</td></tr>
+        <tr><td>위험요인 2개 이상 <span style="color:var(--muted)">· 중등도</span></td><td class="goal">&lt; 130</td></tr>
+        <tr><td>당뇨병이 있음</td><td class="goal">&lt; 100 ~ 70</td></tr>
+        <tr><td>이미 심장·뇌혈관 질환을 겪음 <span style="color:var(--muted)">· 고위험</span></td><td class="goal">&lt; 70 이하</td></tr>
+      </table>
+      <p class="micro">※ 검진에서 처음 발견된 분들은 대부분 위쪽(저·중등도)에 해당하고 1차 대응은 생활습관 교정이에요. 당뇨·심뇌혈관질환이 있다면 목표가 더 엄격하니 주치의와 상의하세요.</p>
+    </div>
+  </section>
+
+  <!-- ───────── 4. 생활습관 ───────── -->
+  <section id="start">
+    <div class="narrow reveal">
+      <div class="eyebrow">가장 먼저 할 일</div>
+      <h2>약보다 먼저,<br><span class="hl">생활습관부터.</span></h2>
+      <p class="stmt">거창하게 다 바꿀 필요 없어요. 핵심은 딱 세 갈래예요.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="idx">1</div>
+          <div>
+            <div class="stt">🍽️ 무엇을 먹는지</div>
+            <div class="stx"><b>포화·트랜스지방을 줄이고</b>(고기 비계·버터·튀김·가공식품), 그 자리를 <b>불포화지방·식이섬유로</b>(생선·견과·통곡물·채소) 채우는 것. 이 원칙만 기억하면 됩니다.</div>
+            <a class="foodlink" href="cholesterol-food-guide.html">
+              <div class="fi">🚦</div>
+              <div class="fb"><div class="ft">음식별 신호등 가이드 보기</div><div class="fd">어떤 음식을 편하게 / 적당히 / 주의해서 먹으면 되는지 한눈에.</div></div>
+              <div class="fa">→</div>
+            </a>
+          </div>
+        </div>
+        <div class="step">
+          <div class="idx">2</div>
+          <div>
+            <div class="stt">🏃 얼마나 움직이는지</div>
+            <div class="stx">운동은 중성지방을 낮추고 좋은 콜레스테롤(HDL)을 올리는 데 특히 효과적이에요.</div>
+            <ul>
+              <li>유산소 — 주 5일 이상, 한 번에 30~60분 (숨이 약간 차는 강도)</li>
+              <li>근력 — 주 2~3일, 맨몸 운동이나 가벼운 기구</li>
+              <li>안 했다면 '하루 10분 걷기'부터. 꾸준함이 강도보다 중요해요.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step">
+          <div class="idx">3</div>
+          <div>
+            <div class="stt">🚭 담배와 술</div>
+            <div class="stx"><b>금연은 강력히 권합니다.</b> 흡연은 HDL을 낮추고 혈관을 직접 상하게 해요. <b>술은 줄이세요.</b> 특히 중성지방이 높다면 음주가 직접 원인일 때가 많아, 마시더라도 하루 1~2잔 이내로.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cardbox" style="margin-top:24px">
+        <div class="ct">기억할 한 가지</div>
+        <p>한 번에 다 바꾸려다 지치기보다, <b>한 끼씩</b> 바꿔보세요. 흰쌀밥에 잡곡을 섞고, 튀김을 구이로 바꾸는 작은 대체가 쌓이는 게 핵심입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── 5. 약 ───────── -->
+  <section class="band-warm">
+    <div class="narrow reveal">
+      <div class="eyebrow">약은 언제부터</div>
+      <h2>바로 약을 먹는 건<br>아니에요.</h2>
+      <p class="stmt">위험이 낮거나 중간 정도라면, 보통 <b>몇 주~몇 달간 생활습관을 바꿔본 뒤</b> 그래도 목표에 못 미칠 때 약을 고려해요. 반대로 이미 심·뇌혈관 질환이 있거나 LDL이 아주 높으면 처음부터 함께 시작하기도 합니다.</p>
+      <div class="cardbox">
+        <div class="ct">약물치료 여부는 의료진과 상담 후 결정하세요</div>
+        <p>약을 시작할지, 어떤 약을 얼마나 쓸지는 개인의 위험도·동반 질환·수치에 따라 달라지는 의학적 판단이에요. 검진 결과지를 들고 의료진과 상담하신 뒤 함께 결정하시길 추천드립니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── 6. 놓치기 쉬운 것 ───────── -->
+  <section>
+    <div class="narrow reveal">
+      <div class="eyebrow">놓치기 쉬운 것</div>
+      <h2>특히 젊은 분들이<br>자주 지나치는 것</h2>
+      <div class="cardbox"><div class="ct">① "젊으니까 괜찮겠지"라는 함정</div><p>증상이 없으니 20·30대는 더 방심하기 쉬워요. 하지만 혈관에 쌓이는 건 이미 젊을 때부터 시작됩니다. 일찍 관리할수록 평생 위험이 낮아져요.</p></div>
+      <div class="cardbox"><div class="ct">② 가족력 — 젊은데 LDL이 유난히 높다면</div><p>식습관과 무관하게 유전적으로 콜레스테롤이 매우 높은 <b>가족성 고콜레스테롤혈증</b>이 있어요. 젊은 나이에 LDL이 190 이상이거나, 가족 중 이른 나이에 심장병을 겪은 분이 있다면 의료진과 상의해보세요.</p></div>
+      <div class="cardbox"><div class="ct">③ 다른 원인이 숨어 있을 수도</div><p>갑상선 기능 저하, 신장질환, 일부 약물도 콜레스테롤을 올려요(이차성 이상지질혈증). 생활습관 관리에도 잘 안 떨어지면 이런 원인을 함께 확인합니다.</p></div>
+      <div class="cardbox"><div class="ct">④ 수치는 컨디션에 영향을 받을 수 있어요</div><p>콜레스테롤 수치는 그날의 컨디션이나 식사 등에 따라 달라질 수 있어요. 검사 주기와 재검 필요 여부는 의료진과 상담하신 뒤 결정하시길 추천드립니다.</p></div>
+    </div>
+  </section>
+
+  <!-- ───────── 요약 ───────── -->
+  <section class="band">
+    <div class="narrow reveal">
+      <div class="eyebrow">한 장 요약</div>
+      <div class="summary">
+        <div class="st">검진에서 콜레스테롤이 높게 나왔다면</div>
+        <ol>
+          <li>증상은 없어도 혈관엔 쌓여요. <b>지금이 가장 되돌리기 쉬운 때.</b></li>
+          <li>수치는 참고 요소예요. 그래도 LDL·총콜·중성지방은 낮을수록, HDL은 높을수록 좋은 편.</li>
+          <li>처음 발견됐다면 <b>약보다 생활습관 교정이 먼저</b>인 경우가 많아요.</li>
+          <li>포화·트랜스지방↓, 불포화지방·식이섬유↑ + 주 5회 유산소 + 금연·절주.</li>
+          <li>젊다고 방심 금물. <b>가족력·아주 높은 LDL은 꼭 의료진과 상의.</b></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── FINAL CTA ───────── -->
+  <div class="finalcta narrow reveal">
+    <h2>오늘의 작은 변화가<br>내일을 바꿔요.</h2>
+    <div class="btnrow" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-primary" href="cholesterol-food-guide.html">🚦 음식 가이드 보러가기</a>
+      <a class="btn btn-ghost" href="#checker">내 수치 다시 보기</a>
+    </div>
+  </div>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer>
+    <div class="narrow src">
+      <div class="h">근거 자료</div>
+      <ul>
+        <li>한국지질·동맥경화학회, 이상지질혈증 진료지침 제5판 (2022, 2023 수정본)</li>
+        <li>한국지질·동맥경화학회, Dyslipidemia Fact Sheet in Korea 2024</li>
+        <li>한국지질·동맥경화학회 공식 홈페이지 lipid.or.kr</li>
+      </ul>
+      <p class="disclaimer">본 내용은 위 자료에 근거한 일반 참고 정보이며, 의학적 진단·치료·처방을 대체하지 않습니다. 개인의 검사 수치, 동반 질환, 복용 약물에 따라 적절한 관리는 달라질 수 있으니, 구체적인 판단과 치료는 반드시 의료진과 상담하세요.</p>
+    </div>
+  </footer>
+
+<script>
+  // ── 스크롤 등장 ──
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // ── 부드러운 앵커 이동 ──
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length>1){ var t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); } }
+    });
+  });
+
+  // ── 수치 체커 ──
+  function bind(id, vid, fn){
+    var el=document.getElementById(id), box=document.getElementById(vid);
+    el.addEventListener('input', function(){
+      var v=parseFloat(el.value);
+      if(isNaN(v)||el.value===''){ box.className='verdict'; box.textContent='숫자를 넣어보세요'; return; }
+      var r=fn(v); box.className='verdict v-'+r.c; box.textContent=r.t;
+    });
+  }
+  bind('tc','tc-v',function(v){ if(v<200)return{c:'green',t:'적정 (<200)'}; if(v<240)return{c:'yellow',t:'경계 (200–239)'}; return{c:'red',t:'높음 (≥240)'}; });
+  bind('ldl','ldl-v',function(v){ if(v<100)return{c:'green',t:'적정 (<100)'}; if(v<130)return{c:'green',t:'정상 (100–129)'}; if(v<160)return{c:'yellow',t:'경계 (130–159)'}; if(v<190)return{c:'red',t:'높음 (160–189)'}; return{c:'red',t:'매우높음 (≥190) — 꼭 상담'}; });
+  bind('tg','tg-v',function(v){ if(v<150)return{c:'green',t:'적정 (<150)'}; if(v<200)return{c:'yellow',t:'경계 (150–199)'}; if(v<500)return{c:'red',t:'높음 (200–499)'}; return{c:'red',t:'매우높음 (≥500) — 꼭 상담'}; });
+  bind('hdl','hdl-v',function(v){ if(v<=40)return{c:'red',t:'낮음 (≤40) — 주의'}; if(v<60)return{c:'yellow',t:'보통 (41–59)'}; return{c:'green',t:'좋음 (≥60)'}; });
+
+  // ── 위험요인 카운트 ──
+  var rfs=document.querySelectorAll('.rf'), hh=document.getElementById('hdlhigh'), rc=document.getElementById('rcount');
+  function count(){
+    var n=0; rfs.forEach(function(c){ if(c.checked)n++; });
+    if(hh.checked && n>0) n--;
+    rc.textContent = (n<=1)
+      ? '주요 위험요인 '+n+'개 — 저위험에 가까워요. LDL 목표는 보통 160 미만, 1차로 생활습관 교정부터.'
+      : '주요 위험요인 '+n+'개 — 중등도 이상. LDL 목표가 130 미만으로 더 낮아져요. 의료진 상담을 권해요.';
+  }
+  rfs.forEach(function(c){ c.addEventListener('change', count); });
+  hh.addEventListener('change', count);
+</script>
+</body>
+</html>
