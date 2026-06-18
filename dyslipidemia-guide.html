@@ -56,6 +56,8 @@
   .btn-primary:hover{background:#2c1f15; transform:translateY(-1px)}
   .btn-ghost{background:var(--cream); color:var(--brown); border:1px solid var(--line)}
   .btn-ghost:hover{border-color:var(--orange); color:var(--orange)}
+  .btn-accent{background:var(--orange); color:#fff}
+  .btn-accent:hover{background:#dd7012; transform:translateY(-1px)}
   .hero .btnrow{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
 
   /* ── hero 결과지 비주얼 ── */
@@ -168,7 +170,8 @@
   .summary li::before{content:counter(s); position:absolute; left:0; top:10px; width:25px; height:25px; background:var(--orange); color:#fff; border-radius:50%; font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center}
 
   .finalcta{text-align:center; padding:64px 0 30px}
-  .finalcta h2{margin-bottom:24px}
+  .finalcta h2{margin-bottom:12px}
+  .finalcta-q{font-size:clamp(15px,2.6vw,17px); color:var(--brown2); margin-bottom:26px}
 
   /* ── footer ── */
   footer{background:var(--cream); border-top:1px solid var(--line); padding:40px 0 60px}
@@ -400,10 +403,12 @@
 
   <!-- ───────── FINAL CTA ───────── -->
   <div class="finalcta narrow reveal">
-    <h2>오늘의 작은 변화가<br>내일을 바꿔요.</h2>
+    <h2>오늘의 작은 변화가<br>내일의 나를 만들어요.</h2>
+    <p class="finalcta-q">지금, 함께 시작해보실래요?</p>
     <div class="btnrow" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
       <a class="btn btn-primary" href="cholesterol-food-guide.html">🚦 음식 가이드 보러가기</a>
       <a class="btn btn-ghost" href="#checker">내 수치 다시 보기</a>
+      <a class="btn btn-accent" href="https://www.instagram.com/daily.doingdoit/" target="_blank" rel="noopener noreferrer">두잉두잇 더 알아보기 →</a>
     </div>
   </div>
 
