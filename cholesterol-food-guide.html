@@ -64,14 +64,66 @@
   .legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:18px; font-size:12.5px; color:var(--brown2)}
   .legend span{display:inline-flex; align-items:center; gap:6px}
   .legend i{width:12px; height:12px; border-radius:50%; display:inline-block}
+
+  /* 먹어도 돼? 입력 */
+  .ask{margin-top:24px; background:var(--cream); border:1px solid var(--line); border-radius:18px; padding:20px}
+  .ask-h{font-size:18px; font-weight:800; letter-spacing:-.02em}
+  .ask-h .q{color:var(--orange)}
+  .ask-sub{font-size:13px; color:var(--muted); margin:4px 0 14px}
+  .ask-row{display:flex; gap:8px}
+  .ask-row input{flex:1; min-width:0; padding:14px 15px; font-size:15px; border:1.5px solid #e8d9c2; border-radius:13px; background:#fff; outline:none; color:var(--brown); font-family:inherit}
+  .ask-row input:focus{border-color:var(--orange)}
+  .ask-row input::placeholder{color:#bfa98c}
+  .ask-row button{padding:0 18px; font-size:14px; font-weight:700; border:none; border-radius:13px; background:var(--orange); color:#fff; cursor:pointer; white-space:nowrap; font-family:inherit}
+  .ask-chips{display:flex; gap:7px; flex-wrap:wrap; margin-top:12px}
+  .ask-chips button{padding:6px 12px; font-size:12.5px; border-radius:999px; border:1px dashed #d8c4a6; background:transparent; color:#8a6f4f; cursor:pointer; font-family:inherit}
+
+  /* 판정 카드 */
+  .result{margin-top:15px; border-radius:14px; overflow:hidden; border:1.5px solid var(--line); background:#fff; animation:rise .3s ease}
+  .result.g{border-color:#4a8c4f44} .result.y{border-color:#c98a1e44} .result.r{border-color:#d14b3244}
+  .result-top{display:flex; gap:15px; align-items:center; padding:17px 18px 14px}
+  .result.g .result-top{background:var(--green-soft)} .result.y .result-top{background:var(--yellow-soft)} .result.r .result-top{background:var(--red-soft)}
+  .lamp-bar{display:flex; flex-direction:column; gap:7px; padding:11px 8px; background:var(--brown); border-radius:999px; flex:none}
+  .lamp-bar i{width:20px; height:20px; border-radius:50%; background:#5a4632; box-shadow:inset 0 2px 4px #0006; display:block}
+  .result.r .lamp-bar .l-r{background:var(--red); box-shadow:0 0 12px 3px #d14b3288}
+  .result.y .lamp-bar .l-y{background:var(--yellow); box-shadow:0 0 12px 3px #c98a1e88}
+  .result.g .lamp-bar .l-g{background:var(--green); box-shadow:0 0 12px 3px #4a8c4f88}
+  .result-head{flex:1; min-width:0}
+  .result-label{font-size:12.5px; font-weight:700; margin-bottom:3px}
+  .result.g .result-label{color:var(--green)} .result.y .result-label{color:var(--yellow)} .result.r .result-label{color:var(--red)}
+  .result-headline{font-size:17px; font-weight:800; line-height:1.35}
+  .result-body{padding:15px 18px 17px}
+  .result-body .sect{font-size:11.5px; font-weight:800; letter-spacing:.06em; color:var(--muted); margin-bottom:7px}
+  .result-body .sect.mt{margin-top:14px}
+  .result-body p.line{font-size:14px; line-height:1.55; margin-bottom:5px}
+  .result-note{margin-top:12px; font-size:12.5px; color:var(--muted); line-height:1.5}
+  .result-source{margin-top:13px; padding-top:11px; border-top:1px solid #f0e6d6; display:flex; gap:6px; align-items:flex-start}
+  .result-source b{font-size:11px; font-weight:800; color:var(--green); background:var(--green-soft); padding:2px 7px; border-radius:6px; white-space:nowrap}
+  .result-source span{font-size:11.5px; color:var(--muted); line-height:1.5}
+  .result.none{background:#fff; border-color:var(--line)}
+  .result.none .result-body{padding:18px}
+  .result.none .nt{font-size:15px; font-weight:800; margin-bottom:7px}
+  .result.none p{font-size:13.5px; color:var(--brown2); line-height:1.6}
+  .result.none .soft{color:var(--muted); font-size:12.5px; margin-top:9px}
+
+  /* 오늘 물어본 것 */
+  .askhist{margin-top:16px}
+  .askhist .h-label{font-size:11.5px; font-weight:800; letter-spacing:.06em; color:var(--muted); margin-bottom:8px}
+  .askhist .h-chips{display:flex; gap:7px; flex-wrap:wrap}
+  .askhist .h-chips span{font-size:12.5px; padding:6px 11px; border-radius:999px; font-weight:700; cursor:pointer}
+  .askhist .h-chips .g{background:var(--green-soft); color:var(--green)}
+  .askhist .h-chips .y{background:var(--yellow-soft); color:var(--yellow)}
+  .askhist .h-chips .r{background:var(--red-soft); color:var(--red)}
+
+  @keyframes rise{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <a href="dyslipidemia-guide.html" style="display:inline-flex;align-items:center;gap:6px;margin:18px 0 4px;font-size:13px;font-weight:700;color:var(--brown2);text-decoration:none;background:var(--cream);border:1px solid var(--line);padding:7px 13px;border-radius:20px">← 홈</a>
-    <div class="kicker" style="margin-top:14px">두잉두잇 · 먹어도 돼<span style="color:var(--orange)">?</span></div>
-    <h1>콜레스테롤 관리 시<br>알아두면 좋을 음식들</h1>
+    <h1 style="margin-top:16px">콜레스테롤 관리 시<br>알아두면 좋을 음식들</h1>
     <p class="lead">완벽히 끊는 게 아니라, 어느 선에서 즐기면 되는지 신호등으로 알아두는 거예요.</p>
     <div class="legend">
       <span><i style="background:var(--red)"></i>주의해서 소량만</span>
@@ -83,6 +135,28 @@
       <span>한국지질·동맥경화학회(KSoLA) 이상지질혈증 진료지침 5판 식사요법. 포화지방 1일 에너지의 7% 이내, 식이섬유 25g 이상, 포화지방을 불포화지방으로 대체, 적색육·가공육보다 콩류·생선 권장을 기준으로 정리했어요.</span>
     </div>
   </header>
+
+  <!-- 먹어도 돼? 입력 -->
+  <section class="ask" id="ask">
+    <div class="ask-h">지금 먹으려는 거, 먹어도 돼<span class="q">?</span></div>
+    <p class="ask-sub">음식 이름을 입력하면 신호등으로 알려드려요. 아래 목록도 함께 둘러보세요.</p>
+    <div class="ask-row">
+      <input id="askInput" type="text" placeholder="예) 치즈케이크 먹어도 돼?" autocomplete="off" aria-label="음식 입력">
+      <button id="askBtn" type="button">물어보기</button>
+    </div>
+    <div class="ask-chips" id="chips">
+      <button type="button">치킨</button>
+      <button type="button">치즈케이크</button>
+      <button type="button">계란</button>
+      <button type="button">삼겹살</button>
+      <button type="button">아메리카노</button>
+    </div>
+    <div id="result"></div>
+    <div class="askhist" id="history" hidden>
+      <div class="h-label">오늘 물어본 것</div>
+      <div class="h-chips" id="hChips"></div>
+    </div>
+  </section>
 
   <!-- RED -->
   <section class="r">
@@ -278,5 +352,117 @@
 
   <a class="back" href="dyslipidemia-guide.html">← 홈으로 돌아가기</a>
 </div>
+
+<script>
+(function(){
+  var FOODS = [
+    {v:"r", name:"크루아상·페이스트리", kw:"크루아상 페이스트리 페스츄리 데니쉬 버터빵 식빵 빵", headline:"버터가 많아요. 반 개로 즐겨요.", why:"버터(포화지방) 함량이 매우 높은 대표 식품이에요. 빵류 중에서도 부담이 큰 편입니다.", tip:"반 개로, 통곡물 빵을 평소 선택으로."},
+    {v:"r", name:"가공육 (소시지·베이컨·햄)", kw:"가공육 소시지 베이컨 햄 핫도그 살라미 스팸 프랑크", headline:"빈도를 줄이는 게 포인트예요.", why:"포화지방·나트륨이 높고, 가이드라인이 명확히 덜 권장하는 식품군이에요.", tip:"빈도를 줄이고 콩·생선 단백질로."},
+    {v:"r", name:"튀김류 (치킨·돈가스·감자튀김)", kw:"튀김 치킨 후라이드 프라이드 돈가스 돈까스 감자튀김 탕수육 까스 텐푸라 프라이 너겟", headline:"조리법부터 바꿔보면 좋아요.", why:"튀김 과정에서 포화·트랜스지방이 더해져요. 조리법 자체가 LDL에 불리합니다.", tip:"에어프라이·구이로 바꿔보기."},
+    {v:"r", name:"생크림 디저트 (케이크·휘핑)", kw:"케이크 케익 생크림 휘핑 치즈케이크 치즈케익 조각케이크 디저트 크림빵 마카롱 도넛", headline:"포화지방+당, 한 조각만 나눠서.", why:"포화지방과 당이 함께 높아요. 치즈케이크·생크림케이크가 대표적입니다.", tip:"한 조각 나눠서, 식후에."},
+    {v:"r", name:"버터·라드 (조리 지방)", kw:"버터 라드 마가린 쇼트닝", headline:"기름만 바꿔도 LDL이 달라져요.", why:"대표적인 포화지방 공급원이에요. 같은 조리라도 기름 선택이 LDL에 큰 영향을 줍니다.", tip:"올리브유·카놀라유로 대체."},
+    {v:"r", name:"팜유·코코넛오일 함유 가공식품", kw:"팜유 코코넛오일 코코넛 과자 크림 프림 커피크림", headline:"식물성이어도 포화지방이 높아요.", why:"식물성이라도 포화지방이 높아요. 과자·크림·일부 라떼에 숨어 있는 경우가 많습니다.", tip:"성분표의 포화지방 g 확인하기."},
+
+    {v:"y", name:"새우·오징어·문어", kw:"새우 오징어 문어 낙지 주꾸미 쭈꾸미 갑오징어 해산물 해물 조개", headline:"포화지방은 낮아요. 양만 의식해요.", why:"포화지방은 낮지만 콜레스테롤이 높은 편이에요. 가이드라인은 식이 콜레스테롤보다 포화지방을 더 중요하게 보지만, 양은 의식해두면 좋아요.", tip:"튀김·버터구이보다 데치거나 찜으로."},
+    {v:"y", name:"달걀", kw:"달걀 계란 에그 노른자 흰자 메추리알 반숙 삶은계란 계란후라이", headline:"좋은 단백질, 과하지만 않으면 괜찮아요.", why:"콜레스테롤이 있지만 영양가 높은 단백질원이에요. 매일 과다 섭취만 피하면 됩니다.", tip:"채소와 함께, 하루 과한 개수는 피하기.", note:"달걀은 근거가 갈리는 식품이에요. 콜레스테롤이 있지만, 최근 가이드라인은 식이 콜레스테롤보다 포화지방 섭취를 더 중요하게 봐요."},
+    {v:"y", name:"치즈", kw:"치즈 모짜렐라 체다 까망베르 크림치즈 슬라이스치즈 리코타", headline:"양만 조절하면 괜찮아요.", why:"포화지방이 높은 편이지만 발효 유제품 특성상 무조건 빨강은 아니에요. 양 조절이 핵심입니다.", tip:"얇게 한두 장, 통곡물과 함께."},
+    {v:"y", name:"소·돼지 살코기", kw:"살코기 소고기 돼지고기 삼겹살 안심 등심 목살 고기 적색육 스테이크 불고기 갈비 제육", headline:"기름기 적은 부위로 적당히.", why:"같은 적색육이라도 기름기 적은 부위는 부담이 덜해요. 가공육(소시지·베이컨)보다 낫습니다.", tip:"비계 떼고, 콩·생선과 번갈아."},
+    {v:"y", name:"다크초콜릿 (70%+)", kw:"다크초콜릿 초콜릿 초콜렛 초코 카카오", headline:"고카카오로 한두 조각이면 무난해요.", why:"포화지방이 있지만 함량을 조절하면 디저트 중 비교적 무난한 편이에요. 밀크초콜릿보다 당이 적습니다.", tip:"한두 조각, 고카카오로."},
+    {v:"y", name:"무여과 커피 (프렌치프레스·에스프레소)", kw:"커피 에스프레소 프렌치프레스 아메리카노 라떼 카페라떼 콜드브루 무여과", headline:"여과(드립) 커피로 바꿔보세요.", why:"종이 필터를 거치지 않는 커피의 카페스톨 성분은 LDL을 올릴 수 있어요.", tip:"자주 마신다면 드립·핸드드립으로.", note:"종이 필터로 내리는 드립(여과) 커피는 이 영향이 적어요."},
+    {v:"y", name:"과일주스", kw:"주스 과일주스 오렌지주스 사과주스 음료 에이드 탄산음료", headline:"주스보단 생과일이 좋아요.", why:"지방은 없지만 당이 농축돼 있어요. 과도한 당은 중성지방을 높일 수 있습니다.", tip:"주스보다 생과일을 적정량."},
+
+    {v:"g", name:"등푸른 생선 (고등어·연어·정어리)", kw:"생선 고등어 연어 정어리 참치 꽁치 삼치 회 등푸른생선 광어 전어", headline:"적색육 대신 챙기기 좋아요.", why:"불포화지방(오메가-3)이 풍부해 적색육을 대체하기 좋은 단백질원이에요. 가이드라인도 적색육·가공육보다 생선을 권장합니다.", tip:"튀김보다 구이·조림으로."},
+    {v:"g", name:"귀리·보리 등 통곡물", kw:"귀리 보리 오트밀 통곡물 잡곡 현미 통밀 곡물 시리얼 호밀", headline:"LDL 낮추는 데 도움돼요.", why:"수용성 식이섬유가 많아 LDL 저하에 도움이 됩니다. 흰쌀·흰빵 대신 주식으로 두기 좋아요.", tip:"흰쌀밥에 잡곡 섞기부터."},
+    {v:"g", name:"콩·두부 등 콩류", kw:"콩 두부 콩류 된장 낫토 두유 청국장 렌틸 병아리콩 단백질", headline:"고기 대신 좋은 단백질이에요.", why:"식물성 단백질과 식이섬유가 풍부하고 포화지방이 낮아요. 적색육을 대신하는 단백질로 권장됩니다.", tip:"고기 반찬 한 끼를 두부로."},
+    {v:"g", name:"채소·잎채소", kw:"채소 야채 잎채소 샐러드 나물 브로콜리 시금치 양배추 상추 토마토", headline:"마음껏, 매 끼 한 접시.", why:"식이섬유가 풍부하고 열량·포화지방이 거의 없어요. 이상지질혈증 관리에서 충분한 섭취가 권장됩니다.", tip:"매 끼 한 접시 곁들이기."},
+    {v:"g", name:"견과류 (소량)", kw:"견과 견과류 아몬드 호두 땅콩 캐슈넛 피스타치오 마카다미아", headline:"한 줌까지면 우호적이에요.", why:"불포화지방과 식이섬유가 좋지만 열량이 높아요. 적정량이면 LDL 관리에 우호적입니다.", tip:"한 줌(약 한 손 가득)까지만."},
+    {v:"g", name:"올리브유 (조리유 대체)", kw:"올리브유 올리브오일 올리브 기름 식용유 카놀라유 들기름", headline:"버터 대신 쓰기 좋아요.", why:"단일불포화지방이 많아, 버터·라드 같은 포화지방 조리유를 대체하기 좋은 선택이에요.", tip:"버터 대신 볶음·드레싱에."}
+  ];
+
+  var LABEL = {r:"주의해서 소량만 드세요", y:"적당히 드세요", g:"편하게 드세요"};
+  var EMOJI = {r:"🔴", y:"🟡", g:"🟢"};
+  var SOURCE = "한국지질·동맥경화학회(KSoLA) 이상지질혈증 진료지침 5판 식사요법 기준";
+
+  var input   = document.getElementById('askInput');
+  var btn     = document.getElementById('askBtn');
+  var chips   = document.getElementById('chips');
+  var result  = document.getElementById('result');
+  var history = document.getElementById('history');
+  var hChips  = document.getElementById('hChips');
+  var seen = [];
+
+  function norm(s){ return (s||'').toLowerCase().replace(/[\s·().,?!~]/g,''); }
+  function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function find(raw){
+    var q = norm(raw);
+    if(!q) return null;
+    for(var i=0;i<FOODS.length;i++){
+      if(norm(FOODS[i].kw + FOODS[i].name).indexOf(q) > -1) return FOODS[i];
+    }
+    return null;
+  }
+
+  function render(food, raw){
+    if(food){
+      var noteHtml = food.note ? '<p class="result-note">※ '+esc(food.note)+'</p>' : '';
+      result.innerHTML =
+        '<div class="result '+food.v+'">' +
+          '<div class="result-top">' +
+            '<div class="lamp-bar"><i class="l-r"></i><i class="l-y"></i><i class="l-g"></i></div>' +
+            '<div class="result-head">' +
+              '<div class="result-label">'+esc(food.name)+' · '+LABEL[food.v]+'</div>' +
+              '<div class="result-headline">'+esc(food.headline)+'</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="result-body">' +
+            '<div class="sect">왜냐하면</div>' +
+            '<p class="line">· '+esc(food.why)+'</p>' +
+            '<div class="sect mt">그래도 먹는다면</div>' +
+            '<p class="line">· '+esc(food.tip)+'</p>' +
+            noteHtml +
+            '<div class="result-source"><b>근거</b><span>'+SOURCE+'</span></div>' +
+          '</div>' +
+        '</div>';
+      addHistory(food);
+    } else {
+      result.innerHTML =
+        '<div class="result none">' +
+          '<div class="result-body">' +
+            '<div class="nt">‘'+esc((raw||'').trim())+'’는 아직 목록에 없어요 🙂</div>' +
+            '<p>지금은 아래 정리된 음식들에 대해 답해드릴 수 있어요. 곧 어떤 음식이든 직접 물어볼 수 있게 준비하고 있어요.</p>' +
+            '<p class="soft">우선 비슷한 음식으로 물어보시거나, 아래 목록에서 분류를 둘러봐 주세요.</p>' +
+          '</div>' +
+        '</div>';
+    }
+  }
+
+  function addHistory(food){
+    for(var i=0;i<seen.length;i++){ if(seen[i].name === food.name) return; }
+    seen.unshift(food);
+    seen = seen.slice(0,6);
+    hChips.innerHTML = seen.map(function(f){
+      return '<span class="'+f.v+'" data-name="'+esc(f.name)+'">'+EMOJI[f.v]+' '+esc(f.name)+'</span>';
+    }).join('');
+    history.hidden = false;
+  }
+
+  function ask(raw){
+    var v = (raw == null ? input.value : raw);
+    if(!v || !v.trim()) return;
+    render(find(v), v);
+  }
+
+  btn.addEventListener('click', function(){ ask(); });
+  input.addEventListener('keydown', function(e){ if(e.key === 'Enter') ask(); });
+  chips.addEventListener('click', function(e){
+    if(e.target.tagName === 'BUTTON'){ input.value = e.target.textContent; ask(e.target.textContent); }
+  });
+  hChips.addEventListener('click', function(e){
+    var t = e.target.closest('span'); if(!t) return;
+    input.value = t.getAttribute('data-name'); ask(t.getAttribute('data-name'));
+  });
+})();
+</script>
 </body>
 </html>

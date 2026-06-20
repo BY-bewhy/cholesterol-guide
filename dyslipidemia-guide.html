@@ -153,6 +153,11 @@
   .foodlink .ft{font-size:14.5px; font-weight:800; color:#2f5e33}
   .foodlink .fd{font-size:12.8px; color:#477a4b; line-height:1.45; margin-top:2px}
   .foodlink .fa{font-size:19px; color:var(--green); font-weight:800}
+  .foodlink.ask{background:var(--orange-soft); border-color:#f6cda0; margin-top:10px}
+  .foodlink.ask:hover{box-shadow:0 10px 26px -16px rgba(242,129,29,.6)}
+  .foodlink.ask .ft{color:#a85a12}
+  .foodlink.ask .fd{color:#b9763a}
+  .foodlink.ask .fa{color:var(--orange)}
 
   /* ── 단순 카드 리스트 (약/놓치기쉬운) ── */
   .cardbox{background:var(--cream); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:16px; padding:20px 22px; margin-top:16px}
@@ -327,6 +332,11 @@
             <a class="foodlink" href="cholesterol-food-guide.html">
               <div class="fi">🚦</div>
               <div class="fb"><div class="ft">음식별 신호등 가이드 보기</div><div class="fd">어떤 음식을 편하게 / 적당히 / 주의해서 먹으면 되는지 한눈에.</div></div>
+              <div class="fa">→</div>
+            </a>
+            <a class="foodlink ask" href="cholesterol-food-guide.html#ask">
+              <div class="fi">💬</div>
+              <div class="fb"><div class="ft">먹어도 돼? 직접 물어보기</div><div class="fd">지금 먹으려는 음식을 입력하면 신호등으로 알려드려요.</div></div>
               <div class="fa">→</div>
             </a>
           </div>
