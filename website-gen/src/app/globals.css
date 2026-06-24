@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/*
+  색·간격 = cholesterol-guide.vercel.app(dyslipidemia-guide.html)의 실제 베이지·
+  크림·브라운 팔레트를 그대로 가져옴. 포인트는 코랄/오렌지 하나뿐이고, 나머지는
+  전부 그 사이트처럼 옅은 파스텔(soft) 톤 — 진한 색은 success/warning/error의
+  "-strong" 텍스트 변형에만 아주 좁게 씀.
+  폰트/타입스케일 = DESIGN-apple.md (SF Pro Display/Text, Inter는 문서가 명시한 대체 폰트)
+*/
+@theme {
+  /* ── Colors — cholesterol-guide.vercel.app 팔레트 ── */
+  --color-primary: #f2811d; /* 사이트의 --orange, 유일한 포인트 컬러 */
+  --color-primary-active: #dd7012; /* 사이트의 btn-accent:hover */
+  --color-primary-soft: #fdebd7; /* 사이트의 --orange-soft, 파스텔 배지/배경용 */
+
+  --color-ink: #3d2b1f; /* 사이트의 --brown */
+  --color-body: #6b543d; /* 사이트의 --brown2 */
+  --color-body-strong: #3d2b1f;
+  --color-muted: #a08465; /* 사이트의 --muted */
+  --color-muted-soft: #c7b39a;
+
+  --color-hairline: #ece0cd; /* 사이트의 --line */
+  --color-hairline-soft: #f3ead9;
+
+  --color-canvas: #faf3e8; /* 사이트의 --beige */
+  --color-surface-soft: #f3e8d6; /* 사이트의 --beige2 */
+  --color-surface-card: #fffdf9; /* 사이트의 --cream */
+  --color-surface-cream-strong: #ece0cd;
+  --color-surface-dark: #3d2b1f; /* 사이트의 --brown (요약 박스 배경) */
+  --color-surface-dark-elevated: #4a3526;
+  --color-surface-dark-soft: #33241a;
+
+  --color-on-primary: #fffdf9;
+  --color-on-dark: #fffdf9;
+  --color-on-dark-soft: #d9c7ad;
+
+  /* 파스텔(soft) 배경 + 강조용 strong 텍스트 — 사이트의 신호등 색과 동일 */
+  --color-success: #e9f2e4; /* --green-soft */
+  --color-success-strong: #4a8c4f; /* --green */
+  --color-warning: #fbf0d8; /* --yellow-soft */
+  --color-warning-strong: #c98a1e; /* --yellow */
+  --color-error: #fbe7df; /* --red-soft */
+  --color-error-strong: #d14b32; /* --red */
+
+  /* ── Spacing — DESIGN-claude.md ── */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 96px;
+
+  /* ── Fonts — DESIGN-apple.md ──
+     -apple-system/BlinkMacSystemFont resolve to real SF Pro Display/Text on
+     Apple devices; Inter (loaded via next/font) is the documented substitute
+     everywhere else. */
+  --font-display: -apple-system, BlinkMacSystemFont, var(--font-inter), system-ui, sans-serif;
+  --font-text: -apple-system, BlinkMacSystemFont, var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-text);
+
+  /* ── Type scale — DESIGN-apple.md hierarchy table ── */
+  --text-hero-display: 56px;
+  --text-hero-display--line-height: 1.07;
+  --text-hero-display--letter-spacing: -0.28px;
+  --text-hero-display--font-weight: 600;
+
+  --text-display-lg: 40px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: 0px;
+  --text-display-lg--font-weight: 600;
+
+  --text-display-md: 34px;
+  --text-display-md--line-height: 1.47;
+  --text-display-md--letter-spacing: -0.374px;
+  --text-display-md--font-weight: 600;
+
+  --text-lead: 28px;
+  --text-lead--line-height: 1.14;
+  --text-lead--letter-spacing: 0.196px;
+  --text-lead--font-weight: 400;
+
+  --text-lead-airy: 24px;
+  --text-lead-airy--line-height: 1.5;
+  --text-lead-airy--letter-spacing: 0px;
+  --text-lead-airy--font-weight: 300;
+
+  --text-tagline: 21px;
+  --text-tagline--line-height: 1.19;
+  --text-tagline--letter-spacing: 0.231px;
+  --text-tagline--font-weight: 600;
+
+  /* body/body-strong → copy/copy-strong: "text-body" would collide with the
+     --color-body text-color utility above (Tailwind text-* is shared by
+     font-size and color namespaces), so the two Apple body-copy sizes are
+     renamed to avoid the clash. */
+  --text-copy-strong: 17px;
+  --text-copy-strong--line-height: 1.24;
+  --text-copy-strong--letter-spacing: -0.374px;
+  --text-copy-strong--font-weight: 600;
+
+  --text-copy: 17px;
+  --text-copy--line-height: 1.47;
+  --text-copy--letter-spacing: -0.374px;
+  --text-copy--font-weight: 400;
+
+  --text-dense-link: 17px;
+  --text-dense-link--line-height: 2.41;
+  --text-dense-link--letter-spacing: 0px;
+  --text-dense-link--font-weight: 400;
+
+  --text-caption: 14px;
+  --text-caption--line-height: 1.43;
+  --text-caption--letter-spacing: -0.224px;
+  --text-caption--font-weight: 400;
+
+  --text-caption-strong: 14px;
+  --text-caption-strong--line-height: 1.29;
+  --text-caption-strong--letter-spacing: -0.224px;
+  --text-caption-strong--font-weight: 600;
+
+  --text-button-large: 18px;
+  --text-button-large--line-height: 1;
+  --text-button-large--letter-spacing: 0px;
+  --text-button-large--font-weight: 300;
+
+  --text-button-utility: 14px;
+  --text-button-utility--line-height: 1.29;
+  --text-button-utility--letter-spacing: -0.224px;
+  --text-button-utility--font-weight: 400;
+
+  --text-fine-print: 12px;
+  --text-fine-print--line-height: 1;
+  --text-fine-print--letter-spacing: -0.12px;
+  --text-fine-print--font-weight: 400;
+
+  --text-micro-legal: 10px;
+  --text-micro-legal--line-height: 1.3;
+  --text-micro-legal--letter-spacing: -0.08px;
+  --text-micro-legal--font-weight: 400;
+
+  --text-nav-link: 12px;
+  --text-nav-link--line-height: 1;
+  --text-nav-link--letter-spacing: -0.12px;
+  --text-nav-link--font-weight: 400;
+}
+
+:root {
+  --background: var(--color-canvas);
+  --foreground: var(--color-ink);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-text);
+}
